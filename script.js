@@ -1,7 +1,7 @@
 console.log("WELCOME TO MY TIC-TAC-TOE.")
 
 let turnmusic = new Audio("./images/ting.mp3")
-let gameover = new Audio("./images/gameover.mp3")
+let gameover = new Audio("./images/yay.mp3")
 let isgameover = false; 
 
 let turn = "X";
@@ -15,12 +15,12 @@ const chngTurn = ()=>{
 
 // FUNC TO CHECK FOR WIN
 
-const chckover=()=>{
-    if(document.querySelector(".line").style.width="0"){
-        gameover.play();
-    }
+// const chckover=()=>{
+//     if(document.querySelector(".line").style.width="0"){
+//         gameover.play();
+//     }
 
-}
+// }
 
 const chckwin=()=>{
 
@@ -45,6 +45,8 @@ const chckwin=()=>{
 
             document.querySelector(".line").style.width="20vw";
             document.querySelector(".line").style.transform=`translate(${e[3]}vw , ${e[4]}vw) rotate(${e[5]}deg)`;
+
+            // gameover.play();
     
 
         } 
@@ -52,6 +54,22 @@ const chckwin=()=>{
 
 }
 
+function again(){
+    let boxtext = document.querySelectorAll('.boxtext');
+    Array.from(boxtext).forEach(elemnt=>{
+        elemnt.innerText="";
+    })
+
+    turn = "X";
+    isgameover=false;
+    document.getElementsByClassName("info")[0].innerText="START" ;
+    
+    if(document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width === "200px"){
+        document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px";
+    }
+    
+    document.querySelector(".line").style.width="0";
+}
 
 
 // MAIN GAME LOGIC
@@ -68,13 +86,19 @@ Array.from(boxes).forEach(index =>{
             if(!isgameover){
                 document.getElementsByClassName("info")[0].innerText="Turn For " + turn;
             }
-
+            else{
+                gameover.play();
+                
+            }
         }
-        
-        
     })
-    
+
 })
+
+
+// if(gameover){
+//     gameover.play();
+// }
 
 
 // FOR RESETING ALL..
@@ -87,7 +111,7 @@ reset.addEventListener('click' , ()=>{
 
     turn = "X";
     isgameover=false;
-    document.getElementsByClassName("info")[0].innerText="Turn For " + turn;
+    document.getElementsByClassName("info")[0].innerText="Start " ;
     
     if(document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width === "200px"){
         document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px";
