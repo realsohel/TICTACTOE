@@ -2,10 +2,12 @@ console.log("WELCOME TO MY TIC-TAC-TOE.")
 
 let turnmusic = new Audio("./images/ting.mp3")
 let gameover = new Audio("./images/yay.mp3")
+let gameover2 = new Audio("./images/gameover.mp3");
 let isgameover = false; 
 
 let turn = "X";
 
+let count = 0;
 
 // FUNC TO CHANGE TURN
 
@@ -15,12 +17,6 @@ const chngTurn = ()=>{
 
 // FUNC TO CHECK FOR WIN
 
-// const chckover=()=>{
-//     if(document.querySelector(".line").style.width="0"){
-//         gameover.play();
-//     }
-
-// }
 
 const chckwin=()=>{
 
@@ -46,64 +42,18 @@ const chckwin=()=>{
             document.querySelector(".line").style.width="20vw";
             document.querySelector(".line").style.transform=`translate(${e[3]}vw , ${e[4]}vw) rotate(${e[5]}deg)`;
 
-            // gameover.play();
-    
-
+            gameover.play();
         } 
     })
 
 }
 
-function again(){
-    let boxtext = document.querySelectorAll('.boxtext');
-    Array.from(boxtext).forEach(elemnt=>{
-        elemnt.innerText="";
-    })
+function restartgame(){
+    count=0;
+    let playa=document.getElementById('restart');
+    playa.style.display="block";
 
-    turn = "X";
-    isgameover=false;
-    document.getElementsByClassName("info")[0].innerText="START" ;
-    
-    if(document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width === "200px"){
-        document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px";
-    }
-    
-    document.querySelector(".line").style.width="0";
-}
-
-
-// MAIN GAME LOGIC
-
-let boxes = document.getElementsByClassName("box");
-Array.from(boxes).forEach(index =>{
-    let boxtext = index.querySelector('.boxtext');
-    index.addEventListener('click' , ()=>{
-        if(boxtext.innerText===''){
-            boxtext.innerText= turn;
-            turn = chngTurn();
-            turnmusic.play();
-            chckwin();
-            if(!isgameover){
-                document.getElementsByClassName("info")[0].innerText="Turn For " + turn;
-            }
-            else{
-                gameover.play();
-                
-            }
-        }
-    })
-
-})
-
-
-// if(gameover){
-//     gameover.play();
-// }
-
-
-// FOR RESETING ALL..
-
-reset.addEventListener('click' , ()=>{    
+    restart.addEventListener('click' , ()=>{    
     let boxtext = document.querySelectorAll('.boxtext');
     Array.from(boxtext).forEach(elemnt=>{
         elemnt.innerText="";
@@ -118,5 +68,76 @@ reset.addEventListener('click' , ()=>{
     }
     
     document.querySelector(".line").style.width="0";
+    if(playa.style.display=="block"){
+        playa.style.display="none";
+    }
+    document.querySelector('.imgbox2').getElementsByTagName('img')[0].style.width = "0";
+
+});
+}
+
+
+// MAIN GAME LOGIC
+let boxes = document.getElementsByClassName("box");
+Array.from(boxes).forEach(index =>{
+    let boxtext = index.querySelector('.boxtext');
+    index.addEventListener('click' , ()=>{
+        if(boxtext.innerText===''){
+            boxtext.innerText= turn;
+            turn = chngTurn();
+            turnmusic.play();
+            chckwin();
+            if(!isgameover){
+                document.getElementsByClassName("info")[0].innerText="Turn For " + turn;
+                if(count==8){
+                    gameover2.play();
+
+                    document.querySelector('.imgbox2').getElementsByTagName('img')[0].style.width = "500px";
+
+                    restartgame();
+                }
+                else{
+                    count++;
+                }
+            }
+            else{  // FOR PLAY AGAIN AFTER completion
+                count=0;
+
+                gameover.play();
+                
+                restartgame();
+            }
+
+        }
+
+    })
+    
+})
+
+
+
+
+
+// FOR RESETING ALL..
+
+reset.addEventListener('click' , ()=>{    
+    count=0;
+    let boxtext = document.querySelectorAll('.boxtext');
+    Array.from(boxtext).forEach(elemnt=>{
+        elemnt.innerText="";
+    })
+
+    turn = "X";
+    isgameover=false;
+    document.getElementsByClassName("info")[0].innerText="Start " ;
+    
+    if(document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width === "200px"){
+        document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px";
+    }
+    
+    document.querySelector(".line").style.width="0";
+    let p = document.getElementById('restart');
+    p.style.display='none';
+    document.querySelector('.imgbox2').getElementsByTagName('img')[0].style.width = "0";
 });
 
