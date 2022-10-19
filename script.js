@@ -98,7 +98,7 @@ Array.from(boxes).forEach(index =>{
                 turnmusic.play();
                 document.getElementsByClassName("info")[0].innerText="Turn For " + turn;
                 chckwin();
-                if(count==8){
+                if(count==9){
                     
                     gameover2.play();
                     document.getElementsByClassName("info")[0].innerText="GAME OVER " ;
