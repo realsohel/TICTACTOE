@@ -1,7 +1,7 @@
 console.log("WELCOME TO MY TIC-TAC-TOE.")
 
 let turnmusic = new Audio("./images/ting.mp3")
-let gameover = new Audio("./images/yay.mp3")
+let win = new Audio("./images/yay.mp3")
 let gameover2 = new Audio("./images/gameover.mp3");
 let isgameover = false; 
 
@@ -73,8 +73,11 @@ const chckwin=()=>{
             document.querySelector(".line").style.width="20vw";
             document.querySelector(".line").style.transform=`translate(${e[3]}vw , ${e[4]}vw) rotate(${e[5]}deg)`;
 
-            gameover.play();
+            win.play();
             restartgame();
+            
+            // let fllw = document.getElementsByClassName('main');
+            // fllw.style.display='block';
         } 
     })
 
@@ -108,7 +111,6 @@ Array.from(boxes).forEach(index =>{
             }
             else{  // FOR PLAY AGAIN AFTER completion
                 count=0;
-                // gameover.play();
                 document.getElementsByClassName("info")[0].innerText="GAME FINISED " ;
                 // restartgame();
             }
@@ -144,5 +146,6 @@ reset.addEventListener('click' , ()=>{
     let p = document.getElementById('restart');
     p.style.display='none';
     document.querySelector('.imgbox2').getElementsByTagName('img')[0].style.width = "0";
+
 });
 
