@@ -8,7 +8,7 @@ let turnmusic = new Audio("./images/ting.mp3");
 
 let turn = "X";
 
-let count = 0;
+let count = 1;
 
 // FUNC TO CHANGE TURN
 
