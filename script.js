@@ -1,9 +1,10 @@
 console.log("WELCOME TO MY TIC-TAC-TOE.")
 
-let turnmusic = new Audio("./images/ting.mp3")
-let win = new Audio("./images/yay.mp3")
+let turnmusic = new Audio("./images/playbell.wav");
+let win = new Audio("./images/yay.mp3");
 let gameover2 = new Audio("./images/gameover.mp3");
 let isgameover = false; 
+let restartmusic = new Audio("./images/ting.mp3");
 
 let turn = "X";
 
@@ -41,7 +42,7 @@ function restartgame(){
         playa.style.display="none";
     }
     document.querySelector('.imgbox2').getElementsByTagName('img')[0].style.width = "0";
-
+    restartmusic.play();
 });
 }
 
@@ -146,6 +147,7 @@ reset.addEventListener('click' , ()=>{
     let p = document.getElementById('restart');
     p.style.display='none';
     document.querySelector('.imgbox2').getElementsByTagName('img')[0].style.width = "0";
+    restartmusic.play();
 
 });
 
