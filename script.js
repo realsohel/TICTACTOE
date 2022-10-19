@@ -1,10 +1,10 @@
 console.log("WELCOME TO MY TIC-TAC-TOE.")
 
-let turnmusic = new Audio("./images/playbell.wav");
+let restartmusic = new Audio("./images/playbell.wav");
 let win = new Audio("./images/yay.mp3");
 let gameover2 = new Audio("./images/gameover.mp3");
 let isgameover = false; 
-let restartmusic = new Audio("./images/ting.mp3");
+let turnmusic = new Audio("./images/ting.mp3");
 
 let turn = "X";
 
