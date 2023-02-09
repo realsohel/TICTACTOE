@@ -1,3 +1,3 @@
 # TICTACTOE
 
-#### It is a Tic-Tac-Toe app can be played by two players. It is made with basic html,css & vanilla JS
+#### It is a Tic-Tac-Toe app and can be played by two players. It is made with basic html,css & vanilla JS
